@@ -23,6 +23,7 @@ class ExtendedListDelegate {
     this.collectGarbage,
     this.viewportBuilder,
     this.closeToTrailing = false,
+    this.reverseTopPadding = 0.0,
   });
 
   /// The builder to get layout type of last child
@@ -64,6 +65,8 @@ class ExtendedListDelegate {
   ///      leading
   ///
   final bool closeToTrailing;
+
+  final double reverseTopPadding;
 }
 
 /// mixin of extended list render
@@ -185,7 +188,7 @@ mixin ExtendedRenderObjectMixin on RenderSliverMultiBoxAdaptor {
       //RenderBox child = firstChild;
       final double distance =
           constraints.remainingPaintExtent - endScrollOffset;
-      _closeToTrailingDistance = distance;
+      _closeToTrailingDistance = distance - extendedListDelegate.reverseTopPadding;
       // while (child != null) {
       //   final SliverMultiBoxAdaptorParentData childParentData =
       //       child.parentData as SliverMultiBoxAdaptorParentData;
